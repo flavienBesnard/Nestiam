@@ -1,0 +1,46 @@
+<div style="text-align:center">
+    <h3>
+      Trending Now
+    </h3>
+      <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let serie of series">
+        <ng-template carouselSlide [id]="serie.id">
+            <div>
+                <a [routerLink]="['/home', serie.id]"><img [src]="imageUrl+serie.poster_path" [alt]="serie.id" [id]="serie.id"></a>
+              <p class="id">{{serie.id}}</p>
+              <small>{{serie.release_date}}</small>
+            </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+    <h3>
+        Comedy
+      </h3>
+        <owl-carousel-o [options]="customOptions" >
+          <ng-container *ngFor="let serie of series">
+            <ng-template carouselSlide [id]="serie.id" *ngIf="serie.genre_ids.includes(35)">
+              <div>
+                <a [routerLink]="['/home', serie.id]"><img [src]='imageUrl+serie.poster_path' [alt]="serie.id" [id]="serie.id"></a>
+                <p class="id">{{serie.id}}</p>
+                <small>{{serie.release_date}}</small>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+
+    <h3>
+       Drama
+      </h3>
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let serie of series">
+            <ng-template carouselSlide [id]="serie.id" *ngIf="serie.genre_ids.includes(18)">
+              <div>
+                <a [routerLink]="['/home', serie.id]"><img [src]="imageUrl+serie.poster_path" [alt]="serie.id" [id]="serie.id"></a>
+                <p class="id">{{serie.id}}</p>
+                <small>{{serie.first_air_date}}</small>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+</div>
