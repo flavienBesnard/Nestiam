@@ -4,7 +4,7 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service'; // flavien	
 
-import { MovieDbResponse, SingleMovie, Movie } from '../models/movie';
+import { MovieDbResponse, SingleMovie, Video,Movie } from '../models/movie';
 import { Router } from '@angular/router';
 
 
