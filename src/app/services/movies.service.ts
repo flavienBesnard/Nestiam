@@ -14,10 +14,13 @@ import { Serie, SerieDbResponse, SingleSerie } from '../models/serie';
 export class MoviesService {
   private apiKey = '?api_key=d01149a7f4a54d4c74dd3e40994ea043';
   private apiUrl = 'https://api.themoviedb.org/3';
-  private searchUrl = 'https://api.themoviedb.org/3/search/movie';
+  private searchUrl = 'https://api.themoviedb.org/3/search';
   STORAGE_KEY = 'local_favourites';// flavien	
   currentFavouriteMovies;// flavien	
   favouriteMovie;// flavien	
+  currentFavouriteSeries: any;
+  favouriteSerie: any;
+  STORAGE_KEY_SERIES = 'local_favourites';
 
   constructor(private http: HttpClient, private router: Router,@Inject(LOCAL_STORAGE) private storage: StorageService) { // flavien	
    }
@@ -54,7 +57,7 @@ export class MoviesService {
   if (!term.trim()) {
     return of([]);
   }
-  return this.http.get<MovieDbResponse>(`${this.searchUrl}${this.apiKey}&query=${term}`)
+  return this.http.get<MovieDbResponse>(`${this.searchUrl}/movie${this.apiKey}&query=${term}`)
       .pipe(
         map(res => {
          return res.results;
@@ -87,6 +90,19 @@ export class MoviesService {
   return this.http.get<Video>(`${this.apiUrl}/tv/${id}/videos${this.apiKey}`)
     .pipe(
       catchError(this.handleError<Video>(`getSerie id=${id}`))
+    );
+  }
+  //search series
+  searchSerie(term: string): Observable<Serie[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<SerieDbResponse>(`${this.searchUrl}/tv${this.apiKey}&query=${term}`)
+        .pipe(
+          map(res => {
+           return res.results;
+          }),
+      catchError(this.handleError<Serie[]>('getSeries', []))
     );
   }
   // handle http error
@@ -127,10 +143,35 @@ export class MoviesService {
     this.currentFavouriteMovies = this.currentFavouriteMovies.filter(movie => movie.id !== id);
     this.storage.set(this.STORAGE_KEY, this.currentFavouriteMovies);
   }
+  addFavouriteSerie(id: string){ 
+    this.currentFavouriteSeries = this.storage.get(this.STORAGE_KEY_SERIES) || [];
+    const serie = this.currentFavouriteSeries.find(serie => serie.id === id);
+    if (serie && serie.liked === true) {
+      return;
+    } else {
+      this.getSerie(id).subscribe({
+        next: serie => {
+          this.favouriteSerie = serie;
 
+          this.currentFavouriteSeries.push(serie);
+          this.storage.set(this.STORAGE_KEY_SERIES, this.currentFavouriteSeries);
+          console.log(this.storage.get(this.STORAGE_KEY_SERIES) || 'LocaL storage is empty');
+        }
+      });
+    }
+  }
+  
+   removeFavouriteSerie(id: string) {	
+    this.currentFavouriteSeries = this.storage.get(this.STORAGE_KEY_SERIES);
+    const serie = this.currentFavouriteSeries.find(serie => serie.id === id);
+    this.currentFavouriteSeries = this.currentFavouriteSeries.filter(serie => serie.id !== id);
+    this.storage.set(this.STORAGE_KEY_SERIES, this.currentFavouriteSeries);
+  }
 
   getFavourite() { // flavien	
     return this.storage.get(this.STORAGE_KEY) || [];
   }
-
+  getFavouriteSerie() {
+    return this.storage.get(this.STORAGE_KEY_SERIES) || [];
+  }
 }

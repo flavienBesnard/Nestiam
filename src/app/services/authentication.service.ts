@@ -35,7 +35,7 @@ export class AuthenticationService {
             resolve();
             // Observable
             this.loggedIn.next(true);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/movie']);
           }
         ).catch(
           (error) => {
@@ -54,7 +54,7 @@ export class AuthenticationService {
             resolve(data);
             // Observable
             this.loggedIn.next(true);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/movie']);
           }
         ).catch(
           (error) => {

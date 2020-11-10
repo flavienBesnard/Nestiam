@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
     this.authenticationService.signInUser(email, password).then(
         (data) => {
           //console.log(data);
-          this.router.navigate(['/home']); // /home
+          this.router.navigate(['/movie']); // /movie
         }
       ).catch(
           (error) => {

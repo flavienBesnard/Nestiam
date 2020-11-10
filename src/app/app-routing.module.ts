@@ -10,17 +10,20 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { SerieListComponent } from './serie-list/serie-list.component';
 import { SerieResolverService } from './services/serie-resolver.service';
+import { SerieDetailsComponent } from './serie-details/serie-details.component';
+import { FavouriteSerieComponent } from './serie-details/favourite-serie/favourite-serie.component';
 
 const routes: Routes = [
-  {path: 'home', component: MovieListComponent, resolve: {resolvedMovies: MovieResolverService}, canActivate: [AuthGuard]},
+  {path: 'movie', component: MovieListComponent, resolve: {resolvedMovies: MovieResolverService}, canActivate: [AuthGuard]},
   {path: '404', component: Err404Component},
-  {path: 'home/:id', component: MoviDetailsComponent},
+  {path: 'movie/:id', component: MoviDetailsComponent, canActivate: [AuthGuard]},
   {path: 'serie', component: SerieListComponent, resolve: {resolvedSeries: SerieResolverService}, canActivate: [AuthGuard]},
-  {path: 'movies/favourite', component: FavouriteComponent, canActivate: [AuthGuard]},
+  {path: 'serie/:id', component: SerieDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'movies/favouriteMovie', component: FavouriteComponent, canActivate: [AuthGuard]},
+  {path: 'series/favouriteSerie', component: FavouriteSerieComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
-  {path: '', redirectTo: 'signin', pathMatch: 'full'}
-  
+  {path: '', redirectTo: 'signin', pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand logo" [routerLink]="['/home']">Nestiam</a>
+  <a class="navbar-brand logo" [routerLink]="['/movie']">Nestiam</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,17 +8,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav  justify-content-center">
       <li class="nav-item ">
-        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
+        <a class="nav-link" [routerLink]="['/movie']" routerLinkActive="active" >Movies</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/serie']" routerLinkActive="active">Series</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/movies/favourite']" routerLinkActive="active" >Favourite</a>
+        <a class="nav-link" [routerLink]="['/movies/favouriteMovie']" routerLinkActive="active" >Favourite Movies</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/signup']" routerLinkActive="active" *ngIf="!(user | async)?.uid" >Sign Up</a>
+        <a class="nav-link" [routerLink]="['/series/favouriteSerie']" routerLinkActive="active" >Favourite Series</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/signup']" routerLinkActive="active" *ngIf="!(user | async)?.uid" >Sign Up</a>        
+      </li>      
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="active"  *ngIf="!(user | async)?.uid" >Sign In</a>
       </li>

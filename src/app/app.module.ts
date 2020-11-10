@@ -24,6 +24,8 @@ import { FavouriteComponent } from './movi-details/favourite.component';
 import { SerieListComponent } from './serie-list/serie-list.component';
 import { SerieDetailsComponent } from './serie-details/serie-details.component';
 import { CarouselHolderComponentSerie } from './serie-list/carousel-holder/carousel-holder.component';
+import { FavouriteSerieComponent } from './serie-details/favourite-serie/favourite-serie.component';
+import { LikeSerieComponent } from './serie-details/like-serie/like-serie.component';
 
 // FIREBASE
 import { AngularFireModule } from '@angular/fire';
@@ -56,7 +58,9 @@ import { SignupComponent } from 'src/app/authentication/signup/signup.component'
     SigninComponent, 
     SignupComponent,		
     SerieListComponent, 
-    SerieDetailsComponent,
+    SerieDetailsComponent, 
+    FavouriteSerieComponent, 
+    LikeSerieComponent
   ],
   imports: [
     BrowserModule,
