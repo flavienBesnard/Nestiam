@@ -20,7 +20,10 @@ import { LogResponseInterceptor } from './http-interceptors/log-response.interce
 import { CacheInterceptor } from './http-interceptors/cache.interceptor';
 import { Err404Component } from './err404/err404.component';
 import { LikeComponent } from './movi-details/like.component'; // flavien	
-import { FavouriteComponent } from './movi-details/favourite.component'; // flavien	
+import { FavouriteComponent } from './movi-details/favourite.component';
+import { SerieListComponent } from './serie-list/serie-list.component';
+import { SerieDetailsComponent } from './serie-details/serie-details.component';
+import { CarouselHolderComponentSerie } from './serie-list/carousel-holder/carousel-holder.component';
 
 // FIREBASE
 import { AngularFireModule } from '@angular/fire';
@@ -42,13 +45,16 @@ import { SignupComponent } from 'src/app/authentication/signup/signup.component'
     NavbarComponent,
     MovieListComponent,
     CarouselHolderComponent,
+    CarouselHolderComponentSerie,
     MoviDetailsComponent,
     MovieSearchComponent,
     Err404Component,
 	  LikeComponent, // flavien	
     FavouriteComponent, 
     SigninComponent, 
-    SignupComponent	
+    SignupComponent,		
+    SerieListComponent, 
+    SerieDetailsComponent
   ],
   imports: [
     BrowserModule,

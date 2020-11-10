@@ -4,15 +4,16 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service'; // flavien	
 
-import { MovieDbResponse, SingleMovie, Video,Movie } from '../models/movie';
+import { MovieDbResponse, SingleMovie, Video, Movie} from '../models/movie';
 import { Router } from '@angular/router';
+import { Serie, SerieDbResponse, SingleSerie } from '../models/serie';
 
 
 @Injectable()
 
 export class MoviesService {
   private apiKey = '?api_key=d01149a7f4a54d4c74dd3e40994ea043';
-  private apiUrl = 'https://api.themoviedb.org/3/movie';
+  private apiUrl = 'https://api.themoviedb.org/3';
   private searchUrl = 'https://api.themoviedb.org/3/search/movie';
   STORAGE_KEY = 'local_favourites';// flavien	
   currentFavouriteMovies;// flavien	
@@ -23,7 +24,7 @@ export class MoviesService {
 
   // get movie collection
   getMovies(): Observable<Movie[]> {
-    return this.http.get<MovieDbResponse>(`${this.apiUrl}/popular${this.apiKey}`)
+    return this.http.get<MovieDbResponse>(`${this.apiUrl}/movie/popular${this.apiKey}`)
       .pipe(
         map(res => {
           return res.results;
@@ -34,7 +35,7 @@ export class MoviesService {
 
   // get single movie
   getMovie(id): Observable<SingleMovie> { // flavien	
-    return this.http.get<SingleMovie>(`${this.apiUrl}/${id}${this.apiKey}`)
+    return this.http.get<SingleMovie>(`${this.apiUrl}/movie/${id}${this.apiKey}`)
       .pipe(
         catchError(this.handleError<SingleMovie>(`getMovie id=${id}`))
     );
@@ -42,7 +43,7 @@ export class MoviesService {
   
   // ADDED - get movies videos
   getVideo(id: number): Observable<Video> {
-  return this.http.get<Video>(`${this.apiUrl}/${id}/videos${this.apiKey}`)
+  return this.http.get<Video>(`${this.apiUrl}/movie/${id}/videos${this.apiKey}`)
     .pipe(
       catchError(this.handleError<Video>(`getMovie id=${id}`))
     );
@@ -62,6 +63,32 @@ export class MoviesService {
   );
   }
 
+  // get serie collection
+  getSeries(): Observable<Serie[]> {
+    return this.http.get<SerieDbResponse>(`${this.apiUrl}/tv/popular${this.apiKey}`)
+      .pipe(
+        map(res => {
+          return res.results;
+        }),
+        catchError(this.handleError<Serie[]>('getSeries', [] ))
+      );
+  }
+
+  // get single serie
+  getSerie(id): Observable<SingleSerie> { 	
+    return this.http.get<SingleSerie>(`${this.apiUrl}/tv/${id}${this.apiKey}`)
+      .pipe(
+        catchError(this.handleError<SingleSerie>(`getSerie id=${id}`))
+    );
+  }
+  
+  // ADDED - get series videos
+  getVideoSerie(id: number): Observable<Video> {
+  return this.http.get<Video>(`${this.apiUrl}/tv/${id}/videos${this.apiKey}`)
+    .pipe(
+      catchError(this.handleError<Video>(`getSerie id=${id}`))
+    );
+  }
   // handle http error
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
