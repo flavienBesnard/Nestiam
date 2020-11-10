@@ -1,7 +1,7 @@
 import {  OnInit, Component } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { ActivatedRoute } from '@angular/router';
-import { SingleMovie, Video } from '../models/movie';
+import { Movie, SingleMovie, Video } from '../models/movie';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class MoviDetailsComponent implements OnInit {
 
-  favouriteMovies;
+  favouriteMovies: Movie[];
   movie: SingleMovie;
   imageBaseUrl = 'https://image.tmdb.org/t/p/original';
   video: Video;

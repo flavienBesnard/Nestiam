@@ -8,7 +8,7 @@
         (input)="search(searchBox.value)">
         <ul class="search-result">
           <li *ngFor="let movie of movies$ | async">
-            <a [routerLink]="['/home', movie.id]" target="_parent">
+            <a [routerLink]="['/movie', movie.id]" target="_parent">
               {{movie.title}}
             </a>
           </li>

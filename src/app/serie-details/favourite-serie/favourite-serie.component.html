@@ -1,0 +1,18 @@
+<section >
+    <div *ngIf="getList()" class="div">
+    <h1 >You currently have no favourite serie</h1>
+    <p class="empty">You can go back to the <a [routerLink]="['/serie']">home page</a> and click on the heart icon on any serie to add it to this list.
+    </div>
+    <div *ngFor="let serie of favouriteSeries; index as indexOfelement;" class="container">
+        <div >
+            <div class="image">
+                <img [src]="setImage(serie)" [id]="indexOfelement" [alt]="serie.name" height="400px" width="300px" [routerLink]="['/serie', serie.id]">
+              </div>
+              <div class="text">
+                <p class="title">{{ serie.Name || serie?.name }}</p>
+                <p class="year">Year:  {{ serie?.first_air_date || setDate(serie) }}</p>
+                <button  (click)="onRemove(serie.id)" class="btn btn-primary">Remove</button>
+              </div>
+        </div>
+    </div>
+  </section>
