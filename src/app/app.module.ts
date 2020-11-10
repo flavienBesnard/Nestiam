@@ -24,6 +24,8 @@ import { FavouriteComponent } from './movi-details/favourite.component';
 import { SerieListComponent } from './serie-list/serie-list.component';
 import { SerieDetailsComponent } from './serie-details/serie-details.component';
 import { CarouselHolderComponentSerie } from './serie-list/carousel-holder/carousel-holder.component';
+import { FavouriteSerieComponent } from './serie-details/favourite-serie/favourite-serie.component';
+import { LikeSerieComponent } from './serie-details/like-serie/like-serie.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CarouselHolderComponentSerie } from './serie-list/carousel-holder/carou
 	  LikeComponent, // flavien	
     FavouriteComponent, // flavien	
     SerieListComponent, 
-    SerieDetailsComponent
+    SerieDetailsComponent, 
+    FavouriteSerieComponent, 
+    LikeSerieComponent
   ],
   imports: [
     BrowserModule,

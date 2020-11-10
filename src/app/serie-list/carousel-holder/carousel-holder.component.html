@@ -6,7 +6,7 @@
       <ng-container *ngFor="let serie of series">
         <ng-template carouselSlide [id]="serie.id">
             <div>
-                <a [routerLink]="['/home', serie.id]"><img [src]="imageUrl+serie.poster_path" [alt]="serie.id" [id]="serie.id"></a>
+                <a [routerLink]="['/serie', serie.id]"><img [src]="imageUrl+serie.poster_path" [alt]="serie.id" [id]="serie.id"></a>
               <p class="id">{{serie.id}}</p>
               <small>{{serie.release_date}}</small>
             </div>
@@ -21,7 +21,7 @@
           <ng-container *ngFor="let serie of series">
             <ng-template carouselSlide [id]="serie.id" *ngIf="serie.genre_ids.includes(35)">
               <div>
-                <a [routerLink]="['/home', serie.id]"><img [src]='imageUrl+serie.poster_path' [alt]="serie.id" [id]="serie.id"></a>
+                <a [routerLink]="['/serie', serie.id]"><img [src]='imageUrl+serie.poster_path' [alt]="serie.id" [id]="serie.id"></a>
                 <p class="id">{{serie.id}}</p>
                 <small>{{serie.release_date}}</small>
               </div>
@@ -36,7 +36,7 @@
           <ng-container *ngFor="let serie of series">
             <ng-template carouselSlide [id]="serie.id" *ngIf="serie.genre_ids.includes(18)">
               <div>
-                <a [routerLink]="['/home', serie.id]"><img [src]="imageUrl+serie.poster_path" [alt]="serie.id" [id]="serie.id"></a>
+                <a [routerLink]="['/serie', serie.id]"><img [src]="imageUrl+serie.poster_path" [alt]="serie.id" [id]="serie.id"></a>
                 <p class="id">{{serie.id}}</p>
                 <small>{{serie.first_air_date}}</small>
               </div>

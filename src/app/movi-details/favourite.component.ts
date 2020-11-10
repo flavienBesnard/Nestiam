@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
+import { Movie, SingleMovie } from '../models/movie';
 import { MoviesService } from '../services/movies.service'; // flavien	
 import { AuthService } from '../user/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from '../user/auth.service';
     <section >
       <div *ngIf="getList()" class="div">
       <h1 >You currently have no favourite movie</h1>
-      <p class="empty">You can go back to the <a [routerLink]="['/home']">home page</a> and click on the heart icon on any movie to add it to this list.
+      <p class="empty">You can go back to the <a [routerLink]="['/movie']">home page</a> and click on the heart icon on any movie to add it to this list.
       </div>
       <div *ngFor="let movie of favouriteMovies" class="container">
         <div class="image">
@@ -115,8 +116,8 @@ import { AuthService } from '../user/auth.service';
   `]
 })
 export class FavouriteComponent implements OnInit {
-  favouriteMovies: any;
-  movie;
+  favouriteMovies: Movie[];
+  movie: any;
   imageUrl: string = "https://image.tmdb.org/t/p/original";
   constructor(private movieService: MoviesService, // flavien	
               public auth: AuthService) { }

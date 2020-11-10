@@ -1,0 +1,4 @@
+<span (click)="logClick()">
+    <button *ngIf="!woLike()" class="btn btn-outline-secondary">Like</button>
+    <button   *ngIf="woLike()"  class="btn btn-danger" size="lg">Unlike</button>
+</span>

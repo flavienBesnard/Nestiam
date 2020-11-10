@@ -80,12 +80,12 @@ export class ProfileComponent implements OnInit {
   saveProfile(formValues): void {
     if (this.profileForm.valid){
       this.auth.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.router.navigate(['home'])
+      this.router.navigate(['movie'])
     }
   }
 
   cancel() {
-    this.router.navigate(['home']);
+    this.router.navigate(['movie']);
   }
 
   validateLastName() {

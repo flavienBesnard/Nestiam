@@ -58,11 +58,11 @@ export class LoginComponent implements OnInit {
 
   login(formValues) {
     this.authService.loginUser(formValues.firstName, formValues.email, formValues.password);
-    this.router.navigate(['home']);
+    this.router.navigate(['movie']);
   }
 
   cancel() {
-    this.router.navigate(['home']);
+    this.router.navigate(['movie']);
   }
 
 
