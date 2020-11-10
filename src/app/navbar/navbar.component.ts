@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch, faUser, faBell } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../user/auth.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,11 @@ import { AuthService } from '../user/auth.service';
 })
 export class NavbarComponent implements OnInit  { // flavien
 
-
-  constructor(public auth: AuthService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+  ) { }
 
   ngOnInit() {
-
+    
   }
 }

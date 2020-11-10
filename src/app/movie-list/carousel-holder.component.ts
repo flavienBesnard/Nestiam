@@ -4,19 +4,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-carousel-holder',
   templateUrl: './carousel-holder.component.html',
-  styles: [`
-  h3{
-    color: white;
-    text-align: left;
-  }
-  .title{
-    color: rgba(255, 255, 255, 0.8);
-  }
-  small{
-    color: rgba(255, 255, 255, 0.4);
-  }
-  `]
+  styleUrls: ['./carousel-holder.component.css']
 })
+
 
 export class CarouselHolderComponent {
 
@@ -25,12 +15,15 @@ export class CarouselHolderComponent {
 
   customOptions: OwlOptions = {
     loop: true,
+    margin: 10,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: [
+      'prev',
+      'next'],
     responsive: {
       0: {
         items: 1

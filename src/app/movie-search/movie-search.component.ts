@@ -4,6 +4,7 @@ import { Movie } from '../models/movie';
 import { Observable, Subject } from 'rxjs';
 import { MoviesService } from '../services/movies.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-movie-search',
@@ -15,7 +16,9 @@ export class MovieSearchComponent implements OnInit {
   movies$: Observable<Movie[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private movieService: MoviesService) { }
+  searchForm: FormGroup;
+  
+  constructor(private movieService: MoviesService, private formBuilder: FormBuilder) { }
 
   // push search term to observable stream
   search(term: string): void {
@@ -23,6 +26,13 @@ export class MovieSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initSearchForm();
+  }
+
+  initSearchForm() {
+    this.searchForm = this.formBuilder.group({
+      
+    })
     this.movies$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -33,6 +43,10 @@ export class MovieSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.movieService.searchMovie(term))
     );
+  }
+
+  onSubmitSearchForm() {
+    console.log(this.searchForm.value);
   }
 
 }

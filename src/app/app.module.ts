@@ -22,6 +22,20 @@ import { Err404Component } from './err404/err404.component';
 import { LikeComponent } from './movi-details/like.component'; // flavien	
 import { FavouriteComponent } from './movi-details/favourite.component'; // flavien	
 
+// FIREBASE
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { SigninComponent } from 'src/app/authentication/signin/signin.component';
+import { SignupComponent } from 'src/app/authentication/signup/signup.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +45,10 @@ import { FavouriteComponent } from './movi-details/favourite.component'; // flav
     MoviDetailsComponent,
     MovieSearchComponent,
     Err404Component,
-	 LikeComponent, // flavien	
-    FavouriteComponent // flavien	
+	  LikeComponent, // flavien	
+    FavouriteComponent, 
+    SigninComponent, 
+    SignupComponent	
   ],
   imports: [
     BrowserModule,
@@ -41,7 +57,16 @@ import { FavouriteComponent } from './movi-details/favourite.component'; // flav
     BrowserAnimationsModule,
     FontAwesomeModule,
     RouterModule.forRoot([]),
-    AppRoutingModule,
+    // FIREBASE
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireMessagingModule,
+    AngularFireDatabaseModule,
+    AngularFireFunctionsModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [
     MoviesService,

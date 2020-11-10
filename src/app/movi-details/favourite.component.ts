@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { MoviesService } from '../services/movies.service'; // flavien	
-import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'app-favourite',
@@ -118,8 +117,7 @@ export class FavouriteComponent implements OnInit {
   favouriteMovies: any;
   movie;
   imageUrl: string = "https://image.tmdb.org/t/p/original";
-  constructor(private movieService: MoviesService, // flavien	
-              public auth: AuthService) { }
+  constructor(private movieService: MoviesService, ) { } // flavien
 
   ngOnInit() {
     this.favouriteMovies = this.movieService.getFavourite();
