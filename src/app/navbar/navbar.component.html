@@ -14,22 +14,20 @@
         <a class="nav-link" [routerLink]="['/serie']" routerLinkActive="active">Series</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Movies</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" [routerLink]="['/movies/favourite']" routerLinkActive="active" >Favourite</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/signup']" routerLinkActive="active" >Sign Up</a>
+        <a class="nav-link" [routerLink]="['/signup']" routerLinkActive="active" *ngIf="!(user | async)?.uid" >Sign Up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="active" >Sign In</a>
+        <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="active"  *ngIf="!(user | async)?.uid" >Sign In</a>
       </li>
-      <!-- <li>
-        <a href="" *ngIf="afAuth.user$|async as user"></a>
-          {{user.displayName}}
-        </a>
-      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="auth.user$|async as user">Email: {{user.email}}</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" *ngIf="(user | async)?.uid" (click)="logout()">Sign Out</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
         <app-movie-search></app-movie-search>		 

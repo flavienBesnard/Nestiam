@@ -46,9 +46,9 @@ export class SigninComponent implements OnInit {
         )
   }
 
-  // prof
-  login() {
-    this.authenticationService.login()
-  }
+  // // prof : connexion avec Google
+  // login() {
+  //   this.authenticationService.login()
+  // }
 
 }

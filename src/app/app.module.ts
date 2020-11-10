@@ -36,6 +36,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from 'src/app/services/authentication.guard';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SigninComponent } from 'src/app/authentication/signin/signin.component';
 import { SignupComponent } from 'src/app/authentication/signup/signup.component';
 
@@ -54,7 +56,7 @@ import { SignupComponent } from 'src/app/authentication/signup/signup.component'
     SigninComponent, 
     SignupComponent,		
     SerieListComponent, 
-    SerieDetailsComponent
+    SerieDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +85,8 @@ import { SignupComponent } from 'src/app/authentication/signup/signup.component'
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
+    AuthGuard,
+    AuthenticationService
   ],
   bootstrap: [AppComponent],
 })
