@@ -4,7 +4,6 @@ import { MovieListComponent } from './movie-list/movie-list.component';
 import { MoviDetailsComponent } from './movi-details/movi-details.component';
 import { MovieResolverService } from './services/movie-resolver.service';
 import { Err404Component } from './err404/err404.component';
-import { FavouriteComponent } from './movi-details/favourite.component';
 import { AuthGuard } from 'src/app/services/authentication.guard';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
@@ -12,13 +11,14 @@ import { SerieListComponent } from './serie-list/serie-list.component';
 import { SerieResolverService } from './services/serie-resolver.service';
 import { SerieDetailsComponent } from './serie-details/serie-details.component';
 import { FavouriteSerieComponent } from './serie-details/favourite-serie/favourite-serie.component';
-
+import { FavouriteComponent } from './movi-details/favourite-movie/favourite.component';
+//canActivate: [AuthGuard]
 const routes: Routes = [
   {path: 'movie', component: MovieListComponent, resolve: {resolvedMovies: MovieResolverService}, canActivate: [AuthGuard]},
   {path: '404', component: Err404Component},
-  {path: 'movie/:id', component: MoviDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'movie/:id', component: MoviDetailsComponent},
   {path: 'serie', component: SerieListComponent, resolve: {resolvedSeries: SerieResolverService}, canActivate: [AuthGuard]},
-  {path: 'serie/:id', component: SerieDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'serie/:id', component: SerieDetailsComponent},
   {path: 'movies/favouriteMovie', component: FavouriteComponent, canActivate: [AuthGuard]},
   {path: 'series/favouriteSerie', component: FavouriteSerieComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: SignupComponent},

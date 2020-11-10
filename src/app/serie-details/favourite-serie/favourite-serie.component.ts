@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MoviesService } from 'src/app/services/movies.service';
 import { AuthenticationService } from 'src/app/services/authentication.service'
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-favourite-serie',
@@ -9,17 +10,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service'
   styleUrls: ['./favourite-serie.component.css']
 })
 export class FavouriteSerieComponent implements OnInit {
-  display = false;
   favouriteSeries: any;
   serie;
   imageUrl: string = "https://image.tmdb.org/t/p/original";
-  @ViewChild('0') img : ElementRef
 
   constructor(private movieService: MoviesService, public auth: AuthenticationService) { }
 
   ngOnInit() {
     this.favouriteSeries = this.movieService.getFavouriteSerie();
-    
   }
 
   setId() {
@@ -57,12 +55,12 @@ export class FavouriteSerieComponent implements OnInit {
     }
   }
   getDisplay(index){
-    var display = false;
-    if( document.getElementById(index).getAttribute("alt") == 'undefined'){
-      display = true;
+    var display = true;
+    if( this.favouriteSeries[index].name == null){
+      display = false;
     }
     else {
-      display = false;
+      display = true;
     }
     console.log("display =" + display);
     return display;

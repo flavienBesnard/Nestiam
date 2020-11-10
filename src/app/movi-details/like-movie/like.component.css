@@ -1,0 +1,21 @@
+button {
+    cursor: pointer;
+    transition: all 1s;
+    transform-origin: 50% 50%;
+    font-family: "times new roman",'Oswald', sans-serif;
+    width: 80px;
+    height: 35px;
+    margin-top: 3px;
+    padding: 3px;
+  }
+  .btn-danger:hover {
+    transform: scale(1.1);
+    background-color: #DC3545;
+    color: white;
+  }
+
+  .btn-outline-danger:hover {
+    transform: scale(1.1);
+    background-color: white;
+    color: #DC3545;
+  }

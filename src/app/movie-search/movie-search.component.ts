@@ -5,6 +5,8 @@ import { Observable, Subject } from 'rxjs';
 import { MoviesService } from '../services/movies.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Serie } from '../models/serie';
 
 @Component({
   selector: 'app-movie-search',
@@ -14,11 +16,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class MovieSearchComponent implements OnInit {
   faSearch = faSearch;
   movies$: Observable<Movie[]>;
+  series$: Observable<Serie[]>;
   private searchTerms = new Subject<string>();
+  serieOrMovie = false;
 
   searchForm: FormGroup;
+  searchFromSerie: FormGroup;
   
-  constructor(private movieService: MoviesService, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private movieService: MoviesService, private formBuilder: FormBuilder) { }
 
   // push search term to observable stream
   search(term: string): void {
@@ -44,9 +49,37 @@ export class MovieSearchComponent implements OnInit {
       switchMap((term: string) => this.movieService.searchMovie(term))
     );
   }
-
   onSubmitSearchForm() {
     console.log(this.searchForm.value);
   }
+  // initSearchFormSerie() {
+  //   this.searchFromSerie = this.formBuilder.group({
+      
+  //   })
+  //   this.series$ = this.searchTerms.pipe(
+  //     // wait 300ms after each keystroke before considering the term
+  //     debounceTime(300),
+
+  //     // ignore new term if same as previous term
+  //     distinctUntilChanged(),
+
+  //     // switch to new search observable each time the term changes
+  //     switchMap((term: string) => this.movieService.searchSerie(term))
+  //   );
+  // }
+  
+  // onSubmitSearchFormSerie() {
+  //   console.log(this.searchForm.value);
+  // }
+  // searchMovieOrSerie(){
+  //   var serie= false;
+  //   if(this.route.toString().substring(this.route.toString().indexOf('url')+5,this.route.toString().indexOf('url')+10) == 'serie'){
+  //     serie = true;
+  //   }
+  //   else{
+  //     serie = false
+  //   }
+  //   return serie;
+  // }
 
 }

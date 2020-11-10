@@ -22,7 +22,7 @@ export class SerieDetailsComponent implements OnInit {
   ngOnInit(): void {
     const serieId: number = +this.route.snapshot.params.id;
     this.movieService.getSerie(serieId).subscribe(res => this.serie = res);
-	  this.movieService.getVideoSerie(serieId).subscribe(res => this.video = res);
+    this.movieService.getVideoSerie(serieId).subscribe(res => this.video = res);
   }
   getUrl(key){
     return 'https://www.youtube.com/watch?v=' + key;

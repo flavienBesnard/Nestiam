@@ -8,3 +8,9 @@ h3{
 small{
     color: rgba(255, 255, 255, 0.4);
 }
+.owl-next{
+    color: black;
+}
+.owl-prev{
+    color: black;
+}

@@ -19,13 +19,13 @@ import { AddHeaderInterceptor } from './http-interceptors/add-header.interceptor
 import { LogResponseInterceptor } from './http-interceptors/log-response.interceptor';
 import { CacheInterceptor } from './http-interceptors/cache.interceptor';
 import { Err404Component } from './err404/err404.component';
-import { LikeComponent } from './movi-details/like.component'; // flavien	
-import { FavouriteComponent } from './movi-details/favourite.component';
+import { LikeComponent } from './movi-details/like-movie/like.component'; // flavien	
 import { SerieListComponent } from './serie-list/serie-list.component';
 import { SerieDetailsComponent } from './serie-details/serie-details.component';
 import { CarouselHolderComponentSerie } from './serie-list/carousel-holder/carousel-holder.component';
 import { FavouriteSerieComponent } from './serie-details/favourite-serie/favourite-serie.component';
 import { LikeSerieComponent } from './serie-details/like-serie/like-serie.component';
+import { FavouriteComponent } from './movi-details/favourite-movie/favourite.component';
 
 // FIREBASE
 import { AngularFireModule } from '@angular/fire';
@@ -42,6 +42,7 @@ import { AuthGuard } from 'src/app/services/authentication.guard';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SigninComponent } from 'src/app/authentication/signin/signin.component';
 import { SignupComponent } from 'src/app/authentication/signup/signup.component';
+
 
 @NgModule({
   declarations: [

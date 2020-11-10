@@ -1,0 +1,18 @@
+<section >
+    <div *ngIf="getList()" class="div">
+        <h1 >You currently have no favourite movie</h1>
+        <p class="empty">You can go back to the <a [routerLink]="['/movie']">home page</a> and click on the heart icon on any movie to add it to this list.
+    </div>
+    <div *ngFor="let movie of favouriteMovies; index as indexOfelement;" class="container">
+        <div *ngIf="getDisplay(indexOfelement)" class="container">
+            <div class="image">
+                <img [src]="setImage(movie)" [alt]="movie.title" height="400px" width="300px" [routerLink]="['/movie', movie.id]">
+            </div>
+            <div class="text">
+                <p class="title">{{ movie.Title || movie?.title }}</p>
+                <p class="year">Year:  {{ movie?.release_date || setDate(movie) }}</p>
+                <button  (click)="onRemove(movie.id)" class="btn btn-primary">Remove</button>
+            </div>
+        </div>
+    </div>
+</section>

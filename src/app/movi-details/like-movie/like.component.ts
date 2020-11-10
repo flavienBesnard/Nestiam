@@ -1,41 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MoviesService } from '../services/movies.service'; // flavien	
+import { MoviesService } from '../../services/movies.service'; // flavien	
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-like',
-  template: `
-  <span (click)="logClick()">
-    <button *ngIf="!woLike()" class="btn btn-outline-secondary">Like</button>
-    <button   *ngIf="woLike()"  class="btn btn-danger" size="lg">Unlike</button>
-
-  </span>
-  `,
-  styles: [`
-  button {
-    cursor: pointer;
-    transition: all 1s;
-    transform-origin: 50% 50%;
-    font-family: "times new roman",'Oswald', sans-serif;
-    width: 80px;
-    height: 35px;
-    margin-top: 3px;
-    padding: 3px;
-  }
-  .btn-danger:hover {
-    transform: scale(1.1);
-    background-color: #DC3545;
-    color: white;
-  }
-
-  .btn-outline-danger:hover {
-    transform: scale(1.1);
-    background-color: white;
-    color: #DC3545;
-  }
-  .
-  `]
+  templateUrl: './like.component.html',
+  styleUrls: ['./like.component.css']
 })
 
 
@@ -70,8 +41,4 @@ export class LikeComponent implements OnInit {
       return true;
     }
   }
-
-
-
-
 }
