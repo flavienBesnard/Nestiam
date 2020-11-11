@@ -12,7 +12,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
-
+  error = false;
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
@@ -37,11 +37,13 @@ export class SigninComponent implements OnInit {
     this.authenticationService.signInUser(email, password).then(
         (data) => {
           //console.log(data);
+          this.error= false;
           this.router.navigate(['/movie']); // /movie
         }
       ).catch(
           (error) => {
             console.log(error);
+            this.error = true;
           }
         )
   }

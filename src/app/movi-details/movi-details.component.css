@@ -16,6 +16,11 @@ h3{
   margin: 20px;
 }
 
+.title {
+  background: transparent;
+  color: whitesmoke;
+}
+
 /*
 * ADDED
 */

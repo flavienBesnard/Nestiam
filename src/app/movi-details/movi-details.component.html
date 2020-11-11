@@ -1,4 +1,4 @@
-<div class="card" *ngIf="movie">
+<div class="title" *ngIf="movie">
   <h3> Watch {{movie.title}}</h3>
 
   <div class="card-body">
@@ -16,21 +16,21 @@
       <div class="col-lg-8 body">
         <div class="row spacing">
           <h5 class="col-lg-3">Description</h5>
-          <div class="col-lg-9">{{movie.overview}}</div>
+          <div class="col-lg-9 card">{{movie.overview}}</div>
         </div>
         <div class="row row spacing" >
           <h5 class="col-lg-3">Genre</h5>
-          <div class="col-lg-9">
+          <div class="col-lg-9 card">
             <span *ngFor='let genres of movie.genres'> {{genres.name}} </span>
           </div>
         </div>
         <div class="row row spacing">
           <h5 class="col-lg-3">Release Year</h5>
-          <div class="col-lg-9">{{movie.release_date}}</div>
+          <div class="col-lg-9 card">{{movie.release_date}}</div>
         </div>
         <div class="row row spacing">
           <h5 class="col-lg-3">Rating</h5>
-          <div class="col-lg-9">{{movie.vote_average}}</div>
+          <div class="col-lg-9 card">{{movie.vote_average}}</div>
         </div>
 
         <div class="row row spacing" *ngFor='let results of video.results; index as indexOfelement;'>
@@ -69,7 +69,8 @@
   <div class="card-footer">
       <button class="btn btn-outline-secondary"
               style='width: 80px'
-              [routerLink]="['/movie']"> Back
+              [routerLink]="['/movie']"
+              routerLinkActive="active"> Back
 			  
 		</button>
 </div>

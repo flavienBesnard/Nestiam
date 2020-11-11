@@ -1,3 +1,12 @@
 .label{
     color: rgba(255, 255, 255, 0.8);
 }
+.danger {
+    background-color: rgb(206, 0, 0);
+    color : white;
+    margin: 2em;
+    margin-left: auto;
+    height: 26px;
+    text-align: center;
+    font-weight: bold;
+}

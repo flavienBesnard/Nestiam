@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Serie } from 'src/app/models/serie';
 
@@ -10,6 +11,9 @@ import { Serie } from 'src/app/models/serie';
 export class CarouselHolderComponentSerie {
   @Input() series: Serie[];
   @Input() imageUrl: any;
+  
+  faAngleRight = faAngleRight;
+  faAngleLeft = faAngleLeft;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -18,7 +22,7 @@ export class CarouselHolderComponentSerie {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['<', '>'],
+    navText: [`<`, `>`],
     responsive: {
       0: {
         items: 1

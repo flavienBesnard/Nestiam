@@ -49,7 +49,6 @@ export class MovieSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.movieService.searchMovie(term))
     );
-    console.log("donne moi cette putin de route :"+this.route.toString().substring(this.route.toString().indexOf('url')+5,this.route.toString().indexOf('url')+10));
   }
 
   initSearchFormSerie() {
@@ -66,16 +65,6 @@ export class MovieSearchComponent implements OnInit {
     );
   }
   
-  searchMovieOrSerie(){
-    var serie= false;
-    if(this.route.toString().substring(this.route.toString().indexOf('url')+5,this.route.toString().indexOf('url')+10) == 'serie'){
-      serie = true;
-    }
-    else{
-      serie = false
-    }
-    return serie;
-  }
   checkUrl(){
     if(this.route.url.startsWith('/serie')){
       this.isSerie = true;

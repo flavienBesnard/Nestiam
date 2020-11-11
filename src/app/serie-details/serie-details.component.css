@@ -16,6 +16,11 @@
     margin: 20px;
   }
   
+  .title {
+    background: transparent;
+    color: whitesmoke;
+  }
+  
   /*
   * ADDED
   */

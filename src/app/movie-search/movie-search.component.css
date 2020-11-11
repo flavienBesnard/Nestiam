@@ -31,5 +31,10 @@ input[type="text"]:focus{
 .search-result li a:active {
   color: white;
 }
-
+.button{
+  display: block;
+  color: whitesmoke;
+  width:25px;
+  text-align: center;
+}
 

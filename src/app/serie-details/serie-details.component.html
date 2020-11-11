@@ -1,4 +1,4 @@
-<div class="card" *ngIf="serie">
+<div class="title" *ngIf="serie">
     <h3> Watch {{serie.name}}</h3>
   
     <div class="card-body">
@@ -16,21 +16,21 @@
         <div class="col-lg-8 body">
           <div class="row spacing">
             <h5 class="col-lg-3">Description</h5>
-            <div class="col-lg-9">{{serie.overview}}</div>
+            <div class="col-lg-9 card">{{serie.overview}}</div>
           </div>
           <div class="row row spacing" >
             <h5 class="col-lg-3">Genre</h5>
-            <div class="col-lg-9">
+            <div class="col-lg-9 card">
               <span *ngFor='let genres of serie.genres'> {{genres.name}} </span>
             </div>
           </div>
           <div class="row row spacing">
             <h5 class="col-lg-3">Release Year</h5>
-            <div class="col-lg-9">{{serie.first_air_date}}</div>
+            <div class="col-lg-9 card">{{serie.first_air_date}}</div>
           </div>
           <div class="row row spacing">
             <h5 class="col-lg-3">Rating</h5>
-            <div class="col-lg-9">{{serie.vote_average}}</div>
+            <div class="col-lg-9 card">{{serie.vote_average}}</div>
           </div>
   
           <div class="row row spacing" *ngFor='let results of video.results; index as indexOfelement;'>
