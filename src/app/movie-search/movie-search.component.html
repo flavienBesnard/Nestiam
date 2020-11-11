@@ -1,10 +1,11 @@
-<form [formGroup]="searchForm" class="form-inline md-form form-sm mt-0">
+<form [formGroup]="searchForm" *ngIf="!isSerie" class="form-inline md-form form-sm mt-0">
   <fa-icon [icon]='faSearch'></fa-icon>
   <input class="form-control form-control-sm ml-3 w-75 "
         type="text"
         placeholder="Search"
         aria-label="Search"
         #searchBox
+        (click)="checkUrl()"
         (input)="search(searchBox.value)">
         <ul class="search-result">
           <li *ngFor="let movie of movies$ | async">
@@ -14,14 +15,15 @@
           </li>
         </ul>
 </form>
-<!-- <form [formGroup]="searchFormSerie" class="form-inline md-form form-sm mt-0">
+<form [formGroup]="searchFormSerie" *ngIf="isSerie" class="form-inline md-form form-sm mt-0">
   <fa-icon [icon]='faSearch'></fa-icon>
   <input class="form-control form-control-sm ml-3 w-75 "
         type="text"
         placeholder="Search"
         aria-label="Search"
-        #searchBox
-        (input)="search(searchBox.value)">
+        #searchBoxSerie
+        (click)="checkUrl()"
+        (input)="search(searchBoxSerie.value)">
         <ul class="search-result">
           <li *ngFor="let serie of series$ | async">
             <a [routerLink]="['/serie', serie.id]" target="_parent">
@@ -29,4 +31,4 @@
             </a>
           </li>
         </ul>
-</form> -->
+</form>

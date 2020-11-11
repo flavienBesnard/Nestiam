@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { MoviesService } from '../services/movies.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Serie } from '../models/serie';
 
 @Component({
@@ -18,12 +18,12 @@ export class MovieSearchComponent implements OnInit {
   movies$: Observable<Movie[]>;
   series$: Observable<Serie[]>;
   private searchTerms = new Subject<string>();
-  serieOrMovie = false;
+  isSerie = false;
 
   searchForm: FormGroup;
-  searchFromSerie: FormGroup;
+  searchFormSerie: FormGroup;
   
-  constructor(private route: ActivatedRoute, private movieService: MoviesService, private formBuilder: FormBuilder) { }
+  constructor(private route: Router, private movieService: MoviesService, private formBuilder: FormBuilder) { }
 
   // push search term to observable stream
   search(term: string): void {
@@ -32,6 +32,7 @@ export class MovieSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSearchForm();
+    this.initSearchFormSerie();
   }
 
   initSearchForm() {
@@ -48,38 +49,39 @@ export class MovieSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.movieService.searchMovie(term))
     );
+    console.log("donne moi cette putin de route :"+this.route.toString().substring(this.route.toString().indexOf('url')+5,this.route.toString().indexOf('url')+10));
   }
-  onSubmitSearchForm() {
-    console.log(this.searchForm.value);
-  }
-  // initSearchFormSerie() {
-  //   this.searchFromSerie = this.formBuilder.group({
+
+  initSearchFormSerie() {
+    this.searchFormSerie = this.formBuilder.group({
       
-  //   })
-  //   this.series$ = this.searchTerms.pipe(
-  //     // wait 300ms after each keystroke before considering the term
-  //     debounceTime(300),
+    })
+    this.series$ = this.searchTerms.pipe(
+      
+      debounceTime(300),
 
-  //     // ignore new term if same as previous term
-  //     distinctUntilChanged(),
+      distinctUntilChanged(),
 
-  //     // switch to new search observable each time the term changes
-  //     switchMap((term: string) => this.movieService.searchSerie(term))
-  //   );
-  // }
+      switchMap((term: string) => this.movieService.searchSerie(term))
+    );
+  }
   
-  // onSubmitSearchFormSerie() {
-  //   console.log(this.searchForm.value);
-  // }
-  // searchMovieOrSerie(){
-  //   var serie= false;
-  //   if(this.route.toString().substring(this.route.toString().indexOf('url')+5,this.route.toString().indexOf('url')+10) == 'serie'){
-  //     serie = true;
-  //   }
-  //   else{
-  //     serie = false
-  //   }
-  //   return serie;
-  // }
-
+  searchMovieOrSerie(){
+    var serie= false;
+    if(this.route.toString().substring(this.route.toString().indexOf('url')+5,this.route.toString().indexOf('url')+10) == 'serie'){
+      serie = true;
+    }
+    else{
+      serie = false
+    }
+    return serie;
+  }
+  checkUrl(){
+    if(this.route.url.startsWith('/serie')){
+      this.isSerie = true;
+    }
+    else {
+      this.isSerie = false;
+    }
+  }
 }
